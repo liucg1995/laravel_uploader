@@ -49,7 +49,15 @@ class UploaderServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/uploader'),
         ]);
-    }
+
+        $this->publishes([
+            __DIR__ . '/../migrations' => database_path('migrations'),
+        ], 'migrations');
+
+        $this->publishes([
+            __DIR__.'/../model/' => app_path('Models')
+        ], 'model');
+ }
 
     protected function loadAssets()
     {

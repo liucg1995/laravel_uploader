@@ -3,6 +3,7 @@
 namespace Liucg1995\Uploader\Services;
 
 use Illuminate\Filesystem\FilesystemManager;
+use Liucg1995\Uploader\Models\Upload;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUpload
@@ -36,7 +37,7 @@ class FileUpload
     {
         $base = base64_encode($content);
 
-        return 'data:'.$mime.';base64,'.$base;
+        return 'data:' . $mime . ';base64,' . $base;
     }
 
     /**
@@ -45,7 +46,7 @@ class FileUpload
      *
      * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
      * @param                                                     $disk
-     * @param string                                              $dir
+     * @param string $dir
      *
      * @return array|bool
      */
@@ -59,12 +60,22 @@ class FileUpload
 
         $path = $this->filesystem->disk($disk)->putFileAs($dir, $file, $hashName);
 
+        $upload = new Upload();
+        $upload->file_name = $hashName;
+        $upload->full_path = $path;
+        $upload->mime = $mime;
+        $upload->size = $file->getSize();
+        $upload->original_name = $file->getClientOriginalName();
+        $file_info = pathinfo($file->getClientOriginalName());
+        $upload->file_ext = $file_info['extension'];
+        $upload->save();
+
         return [
             'success' => true,
             'filename' => $hashName,
             'original_name' => $file->getClientOriginalName(),
             'mime' => $mime,
-            'size' => $file->getClientSize(),
+            'size' => $file->getSize(),
             'key' => $path,
             'url' => $this->filesystem->disk($disk)->url($path),
             'dataURL' => $this->getDataUrl($mime, $this->filesystem->disk($disk)->get($path)),
@@ -74,7 +85,7 @@ class FileUpload
     /**
      * Replace date variable in dir path.
      *
-     * @param  string $dir
+     * @param string $dir
      *
      * @return string
      */
