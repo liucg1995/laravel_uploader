@@ -2,6 +2,7 @@
 
 namespace Liucg1995\Uploader\Services;
 
+use Hashids\Hashids;
 use Illuminate\Filesystem\FilesystemManager;
 use Liucg1995\Uploader\Models\Upload;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -69,6 +70,8 @@ class FileUpload
         $file_info = pathinfo($file->getClientOriginalName());
         $upload->file_ext = $file_info['extension'];
         $upload->save();
+        $upload->alpha_id = Upload::alpha_id($upload->id);
+        $upload->save();
 
         return [
             'success' => true,
@@ -77,6 +80,7 @@ class FileUpload
             'mime' => $mime,
             'size' => $file->getSize(),
             'key' => $path,
+            'alpha_id' =>  $upload->alpha_id ,
             'url' => $this->filesystem->disk($disk)->url($path),
             'dataURL' => $this->getDataUrl($mime, $this->filesystem->disk($disk)->get($path)),
         ];

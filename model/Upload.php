@@ -10,4 +10,12 @@ class Upload extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function setAlphaIdAttribute($value)
+    {
+        $this->attributes['alpha_id'] = strtolower($value) . '1111';
+    }
+
+
+
 }
