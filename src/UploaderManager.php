@@ -1,16 +1,16 @@
 <?php
-namespace SunnyShift\Uploader;
+namespace Liucg1995\Uploader;
 
 use Illuminate\Http\Request;
-use SunnyShift\Uploader\Adapter\BOS;
-use SunnyShift\Uploader\Adapter\COS;
-use SunnyShift\Uploader\Adapter\Local;
-use SunnyShift\Uploader\Adapter\Qiniu;
-use SunnyShift\Uploader\Adapter\QOS;
-use SunnyShift\Uploader\Adapter\SCS;
-use SunnyShift\Uploader\Adapter\Upyun;
-use SunnyShift\Uploader\Adapter\OSS;
-use SunnyShift\Uploader\Contracts\UploaderContract;
+use Liucg1995\Uploader\Adapter\BOS;
+use Liucg1995\Uploader\Adapter\COS;
+use Liucg1995\Uploader\Adapter\Local;
+use Liucg1995\Uploader\Adapter\Qiniu;
+use Liucg1995\Uploader\Adapter\QOS;
+use Liucg1995\Uploader\Adapter\SCS;
+use Liucg1995\Uploader\Adapter\Upyun;
+use Liucg1995\Uploader\Adapter\OSS;
+use Liucg1995\Uploader\Contracts\UploaderContract;
 use Exception;
 
 class UploaderManager

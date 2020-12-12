@@ -1,14 +1,14 @@
 <?php
-namespace SunnyShift\Uploader;
+namespace Liucg1995\Uploader;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use SunnyShift\Uploader\Adapter\OSS;
-use SunnyShift\Uploader\Adapter\Upyun;
-use SunnyShift\Uploader\Services\FileUpload;
-use SunnyShift\Uploader\Adapter\Local;
-use SunnyShift\Uploader\Adapter\Qiniu;
+use Liucg1995\Uploader\Adapter\OSS;
+use Liucg1995\Uploader\Adapter\Upyun;
+use Liucg1995\Uploader\Services\FileUpload;
+use Liucg1995\Uploader\Adapter\Local;
+use Liucg1995\Uploader\Adapter\Qiniu;
 use Illuminate\Support\Facades\Route;
 
 class UploaderServiceProvider extends ServiceProvider
@@ -38,7 +38,7 @@ class UploaderServiceProvider extends ServiceProvider
 
     protected function loadRoute(){
         if (! $this->app->routesAreCached()){
-            Route::post('sunnyshift/upload', __NAMESPACE__.'\Http\Controllers\UploaderController@upload')->name('sunnyshift.upload');
+            Route::post('Liucg1995/upload', __NAMESPACE__.'\Http\Controllers\UploaderController@upload')->name('Liucg1995.upload');
         }
     }
 

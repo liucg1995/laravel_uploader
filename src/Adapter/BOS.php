@@ -1,8 +1,8 @@
 <?php
-namespace SunnyShift\Uploader\Adapter;
+namespace Liucg1995\Uploader\Adapter;
 use Qiniu\Auth;
 use Qiniu\Zone;
-use SunnyShift\Uploader\Contracts\UploaderContract;
+use Liucg1995\Uploader\Contracts\UploaderContract;
 
 class BOS implements UploaderContract
 {

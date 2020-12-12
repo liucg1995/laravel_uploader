@@ -1,5 +1,5 @@
 <?php
-namespace SunnyShift\Uploader\Contracts;
+namespace Liucg1995\Uploader\Contracts;
 
 interface UploaderContract
 {

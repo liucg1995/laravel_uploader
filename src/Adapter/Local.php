@@ -1,6 +1,6 @@
 <?php
-namespace SunnyShift\Uploader\Adapter;
-use SunnyShift\Uploader\Contracts\UploaderContract;
+namespace Liucg1995\Uploader\Adapter;
+use Liucg1995\Uploader\Contracts\UploaderContract;
 
 class Local implements UploaderContract
 {
@@ -12,7 +12,7 @@ class Local implements UploaderContract
     }
 
     public function url() : string {
-        return url('sunnyshift/upload');
+        return url('Liucg1995/upload');
     }
 
     public function header() : array {

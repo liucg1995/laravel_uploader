@@ -6,19 +6,19 @@
 ## 安装
 
 ```sh
-composer require sunnyshift/laravel-uploader
+composer require Liucg1995/laravel-uploader
 ```
 
 ## 添加服务提供者
 
 ```php
-SunnyShift\Uploader\UploaderServiceProvider::class,
+Liucg1995\Uploader\UploaderServiceProvider::class,
 ```
 
 ## 生成资源文件
 
 ```sh
-php artisan vendor:publish --provider=SunnyShift\\LaravelUploader\\UploadServiceProvider
+php artisan vendor:publish --provider=Liucg1995\\LaravelUploader\\UploadServiceProvider
 ```
 
 ## 使用
@@ -128,7 +128,7 @@ FILESYSTEM_DRIVER=qiniu
 ### 1.新增驱动
 ```php
 <?php
-use SunnyShift\Uploader\Contracts\UploaderContract;
+use Liucg1995\Uploader\Contracts\UploaderContract;
 
 class MyStorage implements UploaderContract {
         /**
@@ -184,7 +184,7 @@ Uploader::setAdapter('mystorage');
 ```php
 $data = Uploader::build($jsoned = true);
 ```
-其中`data`包含实现`SunnyShift\Uploader\Contracts\UploaderContract`的所有参数，可以根据具体业务使用。
+其中`data`包含实现`Liucg1995\Uploader\Contracts\UploaderContract`的所有参数，可以根据具体业务使用。
 
 ## License
 MIT

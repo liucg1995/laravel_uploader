@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sunnyshift
+ * User: Liucg1995
  * Date: 17-11-8
  * Time: 上午10:22
  */
 
-namespace SunnyShift\Uploader\Adapter;
+namespace Liucg1995\Uploader\Adapter;
 
 
 class SCS

@@ -1,5 +1,5 @@
 <?php
-namespace SunnyShift\Uploader;
+namespace Liucg1995\Uploader;
 
 use Illuminate\Support\Facades\Facade;
 

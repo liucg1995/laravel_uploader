@@ -4,7 +4,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "sunnyshift",
+            "name": "Liucg1995",
             "email": "wenghang1228@gmail.com"
         }
     ],
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SunnyShift\\Uploader\\": "src"
+            "Liucg1995\\Uploader\\": "src"
         }
     }
 }

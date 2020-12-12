@@ -1,9 +1,9 @@
 <?php
-namespace SunnyShift\Uploader\Http\Controllers;
+namespace Liucg1995\Uploader\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use SunnyShift\Uploader\Services\FileUpload;
+use Liucg1995\Uploader\Services\FileUpload;
 
 class UploaderController extends BaseController
 {

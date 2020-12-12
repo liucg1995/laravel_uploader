@@ -1,6 +1,6 @@
 <?php
-namespace SunnyShift\Uploader\Adapter;
-use SunnyShift\Uploader\Contracts\UploaderContract;
+namespace Liucg1995\Uploader\Adapter;
+use Liucg1995\Uploader\Contracts\UploaderContract;
 
 class Upyun implements UploaderContract
 {
