@@ -64,13 +64,14 @@ class FileUpload
         $upload = new Upload();
         $upload->file_name = $hashName;
         $upload->full_path = $path;
+        $upload->view_path = $this->filesystem->disk($disk)->url($path);
         $upload->mime = $mime;
         $upload->size = $file->getSize();
         $upload->original_name = $file->getClientOriginalName();
         $file_info = pathinfo($file->getClientOriginalName());
         $upload->file_ext = $file_info['extension'];
         $upload->save();
-        $upload->alpha_id = Upload::alpha_id($upload->id);
+        $upload->alpha_id =alpha_id($upload->id);
         $upload->save();
 
         return [

@@ -20,6 +20,7 @@ class CreateUploadsTable extends Migration
             $table->string('alpha_id' , 30)->nullable(true);
             $table->string('file_name')->nullable(true);
             $table->string('full_path')->nullable(true);
+            $table->string('view_path')->nullable(true);
             $table->string('original_name')->nullable(true);
             $table->string('file_ext')->nullable(true);
             $table->string('mime')->nullable(true);

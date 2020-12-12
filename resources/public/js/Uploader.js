@@ -96,6 +96,7 @@ function Uploader(selector) {
         });
 
         this.uploader.on('uploadProgress', function (file, percentage) {
+            console.log(file, percentage);
             $('#' + file.id).find('.wrapper').text(parseInt(percentage * 100) + '%');
         });
 
