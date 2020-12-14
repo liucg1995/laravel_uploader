@@ -146,7 +146,7 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
             $num++;
             $click_id = $input_name . '_info' . $num;
             $input_str .= '<div class="item">
-    <span  class="webuploadinfo">' . $v['original_name'] . '.' . $v['file_ext'] . '</span>
+    <span  class="webuploadinfo">' . $v['original_name'] . '</span>
     <div class="webuploadinfodiv"><span class="webuploadsize">' . $v['file_size'] . '</span>
     <span class="webuploadstate">已上传</span>
     <div class="webuploadDbtn">删除</div></div>';
