@@ -114,9 +114,6 @@ function get_list($rid, $use_model = false)
 }
 
 
-
-
-
 /**
  * 针对数字的加密解密
  * 加密：alpha_id(36731) >> fmQJjeWjk
@@ -194,7 +191,6 @@ function alpha_id($in, $to_num = false, $pad_up = 9, $pass_key = 2543.5415412812
 }
 
 
-
 function show_webupload_info($input_name, $use_model, $item, $params = array(), $limit = 0, $key = false)
 {
 
@@ -209,10 +205,11 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
                 $file_info = array($file_info);
         } else {
             //多文件
-            $file_info = get_list($item , $use_model);
+            $file_info = get_list($item, $use_model);
         }
     }
 
+    $file_info = $file_info ?? "";
     $params['input_name'] = $input_name;
     $params['use_model'] = $use_model;
 
@@ -225,17 +222,17 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
     if ($file_info) {
         foreach ($file_info as $v) {
             if ($limit) {
-            }else{
+            } else {
                 $v = $v->upload;
             }
             $num++;
             $click_id = $input_name . '_info' . $num;
             $input_str .= '<div class="item el-upload-list__item">
-                    <span  class="webuploadinfo">' . $v['original_name']. '</span>
+                    <span  class="webuploadinfo">' . $v['original_name'] . '</span>
                      <label class="el-upload-list__item-status-label">
                         <i class="fa fa-close webuploadDbtn" ></i>
                     </label>
-                    <div class="webuploadinfodiv"><span class="webuploadsize">' . ceil($v['size']/1024) . 'K</span>
+                    <div class="webuploadinfodiv"><span class="webuploadsize">' . ceil($v['size'] / 1024) . 'K</span>
                     <span class="webuploadstate">已上传</span></div>
             ';
             if ($limit) {
