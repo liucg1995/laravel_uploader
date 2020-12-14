@@ -89,12 +89,12 @@ function initWebUpload(item, options) {
             '<div id="' + pickerid + '">选择文件</div>' +
             '</div>'
     }
-    if (!opts.limit ){
+    if (!opts.limit) {
         uploaderStrdiv += '<div class="webuploadAllow">支持多附件上传。</div>';
     }
     uploaderStrdiv += '<div style="display:none" class="UploadhiddenInput" ></div>'
     // uploaderStrdiv += '</div>';
-    target.append(uploaderStrdiv);
+    target.prepend(uploaderStrdiv);
 
     var $list = target.find('.uploader-list'),
         $btn = target.find('.webuploadbtn'),//手动上传按钮备用
@@ -117,7 +117,7 @@ function initWebUpload(item, options) {
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
             pick: '#' + pickerid,
             //不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-            resize: false,
+            resize: true,
             fileNumLimit: opts.fileNumLimit,
             fileSizeLimit: opts.fileSizeLimit,
             fileSingleSizeLimit: opts.fileSingleSizeLimit,
@@ -134,13 +134,13 @@ function initWebUpload(item, options) {
             var newid = SuiJiNum();
             fileData.queueId = newid;
             if (options.limit) {
-                $list.html('<div id="' + newid + '" class="item">' +
+                $list.html('<div id="' + newid + '" class="item el-upload-list__item ">' +
                     '<div class="info">' + fileData.name + '</div>' +
                     '<div class="state">已上传</div>' +
                     '<div class="del"></div>' +
                     '</div>');
             } else {
-                $list.append('<div id="' + newid + '" class="item">' +
+                $list.append('<div id="' + newid + '" class="item el-upload-list__item ">' +
                     '<div class="info">' + fileData.name + '</div>' +
                     '<div class="state">已上传</div>' +
                     '<div class="del"></div>' +
@@ -156,19 +156,19 @@ function initWebUpload(item, options) {
             // debugger;
             if (options.limit) {
                 file_name = options.name + '_info';
-                $list.html('<div id="' + $(item)[0].id + file.id + '" class="item">' +
+                $list.html('<div id="' + $(item)[0].id + file.id + '" class="item el-upload-list__item ">' +
                     '<span class="webuploadinfo" >' + file.name + '</span>' +
-                    '<div class="webuploadinfodiv"><span class="webuploadsize">' + WebUploader.formatSize(file.size) + '</span>' +
-                    '<span class="webuploadstate">正在上传...</span>' +
-                    '<div class="webuploadDelbtn">删除</div></div>' +
+                    '  <label class="el-upload-list__item-status-label">' +
+                    '  <i class="fa fa-close webuploadDbtn"></i>' +
+                    ' </label>' +
                     '</div>');
             } else {
                 file_name = options.name + '_info' + file.id;
-                $list.append('<div id="' + $(item)[0].id + file.id + '" class="item">' +
+                $list.append('<div id="' + $(item)[0].id + file.id + '" class="item el-upload-list__item ">' +
                     '<span class="webuploadinfo" >' + file.name + '</span>' +
-                    '<div class="webuploadinfodiv"><span class="webuploadsize">' + WebUploader.formatSize(file.size) + '</span>' +
-                    '<span class="webuploadstate">正在上传...</span>' +
-                    '<div class="webuploadDelbtn">删除</div></div>' +
+                    '  <label class="el-upload-list__item-status-label">' +
+                    '     <i class="fa fa-close webuploadDbtn"></i>' +
+                    ' </label>' +
                     '</div>');
             }
             uploader.upload();
@@ -177,19 +177,23 @@ function initWebUpload(item, options) {
         uploader.on('fileQueued', function (file) {//队列事件
             if (options.limit) {
                 file_name = options.name + '_info';
-                $list.html('<div id="' + $(item)[0].id + file.id + '" class="item">' +
+                $list.html('<div id="' + $(item)[0].id + file.id + '" class="item el-upload-list__item ">' +
                     '<span class="webuploadinfo" >' + file.name + '</span>' +
+                    ' <label class="el-upload-list__item-status-label">                ' +
+                    '              <i class="fa fa-close webuploadDbtn"></i>' +
+                    '                 </label>' +
                     '<div class="webuploadinfodiv"><span class="webuploadsize">' + WebUploader.formatSize(file.size) + '</span>' +
                     '<span class="webuploadstate">等待上传...</span>' +
-                    '<div class="webuploadDelbtn">删除</div></div>' +
                     '</div>');
             } else {
                 file_name = options.name + '_info' + file.id;
-                $list.append('<div id="' + $(item)[0].id + file.id + '" class="item">' +
+                $list.append('<div id="' + $(item)[0].id + file.id + '" class="item el-upload-list__item ">' +
                     '<span class="webuploadinfo" >' + file.name + '</span>' +
+                    ' <label class="el-upload-list__item-status-label">                ' +
+                    '              <i class="fa fa-close webuploadDbtn"></i>' +
+                    '                 </label>' +
                     '<div class="webuploadinfodiv"><span class="webuploadsize">' + WebUploader.formatSize(file.size) + '</span>' +
                     '<span class="webuploadstate">等待上传...</span>' +
-                    '<div class="webuploadDelbtn">删除</div></div>' +
                     '</div>');
             }
         });
@@ -366,5 +370,4 @@ function powerWebUpload(ele, options) {
         initWebUpload(ele, options);
     }
 }
-
 

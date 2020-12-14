@@ -33,7 +33,6 @@ function form_upload_images($input_name, $use_model, $rid, $params = array())
 }
 
 
-
 /**
  * 跟据id取得图片信息
  *
@@ -145,11 +144,14 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
         foreach ($file_info as $v) {
             $num++;
             $click_id = $input_name . '_info' . $num;
-            $input_str .= '<div class="item">
-    <span  class="webuploadinfo">' . $v['original_name'] . '</span>
-    <div class="webuploadinfodiv"><span class="webuploadsize">' . $v['file_size'] . '</span>
-    <span class="webuploadstate">已上传</span>
-    <div class="webuploadDbtn">删除</div></div>';
+            $input_str .= '<div class="item el-upload-list__item">
+                    <span  class="webuploadinfo">' . $v['original_name'] . '</span>
+                     <label class="el-upload-list__item-status-label">
+                        <i class="fa fa-close webuploadDbtn" ></i>
+                    </label>
+                    <div class="webuploadinfodiv"><span class="webuploadsize">' . ceil($v['size']/1024) . 'K</span>
+                    <span class="webuploadstate">已上传</span></div>
+            </div>';
             if ($limit) {
                 $input_str .= '<input type="hidden" name="' . $input_name . '" value="' . $v['full_path'] . '">';
                 $input_str .= '<input type="hidden" id="' . $click_id . '" data-id="' . $v['alpha_id'] . '" name="' . $input_name . '_id" value="' . $v['alpha_id'] . '">';
@@ -159,13 +161,11 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
             $input_str .= '</div>';
         }
     }
-    $input_str .= '</div></div>';
+    $input_str .= '</div>';
     $input_str .= webUpload_script($params, $limit);
 
     return $input_str;
 }
-
-
 
 
 function webUpload_script($params, $limit = 0)
@@ -174,10 +174,11 @@ function webUpload_script($params, $limit = 0)
     $str = '<script src="' . asset('/vendor/uploader/js/webuploader.js') . '"></script>';
     $str .= '<script src="' . asset('/vendor/uploader/js/MyWebUploader.js') . '"></script>';
     $str .= '<link rel="stylesheet" href="' . asset('/vendor/uploader/css/webuploader.css') . '"/>';
+    $str .= '<link rel="stylesheet" href="' . asset('/vendor/uploader/css/font-awesome.min.css') . '"/>';
     $str .= "<script>
     $(function () {
         powerWebUpload($('#$params[input_name]') ,{
-            auto: false,limit:$limit, name: '$params[input_name]', allowType:'" . implode(' ', $webuploader_config['allow']) . "',
+            auto: false,limit:$limit, compress:false, name: '$params[input_name]', allowType:'" . implode(' ', $webuploader_config['allow']) . "',
             accept: {
 //                title: 'Images',
                 extensions: '" . implode(',', $webuploader_config['allow']) . "',
