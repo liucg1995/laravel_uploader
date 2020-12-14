@@ -84,7 +84,7 @@ function get_list($rid, $use_model = false)
     else {
         return false;
     }
-    if (!$has_data) {
+    if (!$multi_info) {
         return false;
     }
     //p($has_data);
@@ -116,6 +116,7 @@ function get_list($rid, $use_model = false)
 
 function show_webupload_info($input_name, $use_model, $item, $params = array(), $limit = 0, $key = false)
 {
+
     if ($item) {
         if ($limit) {
             //单文件
@@ -127,7 +128,7 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
                 $file_info = array($file_info);
         } else {
             //多文件
-            $file_info = get_list($item);
+            $file_info = get_list($item , $use_model);
         }
     }
 
@@ -142,16 +143,20 @@ function show_webupload_info($input_name, $use_model, $item, $params = array(), 
 
     if ($file_info) {
         foreach ($file_info as $v) {
+            if ($limit) {
+            }else{
+                $v = $v->upload;
+            }
             $num++;
             $click_id = $input_name . '_info' . $num;
             $input_str .= '<div class="item el-upload-list__item">
-                    <span  class="webuploadinfo">' . $v['original_name'] . '</span>
+                    <span  class="webuploadinfo">' . $v['original_name']. '</span>
                      <label class="el-upload-list__item-status-label">
                         <i class="fa fa-close webuploadDbtn" ></i>
                     </label>
                     <div class="webuploadinfodiv"><span class="webuploadsize">' . ceil($v['size']/1024) . 'K</span>
                     <span class="webuploadstate">已上传</span></div>
-            </div>';
+            ';
             if ($limit) {
                 $input_str .= '<input type="hidden" name="' . $input_name . '" value="' . $v['full_path'] . '">';
                 $input_str .= '<input type="hidden" id="' . $click_id . '" data-id="' . $v['alpha_id'] . '" name="' . $input_name . '_id" value="' . $v['alpha_id'] . '">';
@@ -178,7 +183,7 @@ function webUpload_script($params, $limit = 0)
     $str .= "<script>
     $(function () {
         powerWebUpload($('#$params[input_name]') ,{
-            auto: false,limit:$limit, compress:false, name: '$params[input_name]', allowType:'" . implode(' ', $webuploader_config['allow']) . "',
+            auto: false,limit:$limit, compress:false,quality:100, name: '$params[input_name]', allowType:'" . implode(' ', $webuploader_config['allow']) . "',
             accept: {
 //                title: 'Images',
                 extensions: '" . implode(',', $webuploader_config['allow']) . "',
