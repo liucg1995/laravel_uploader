@@ -44,14 +44,14 @@ class UploaderServiceProvider extends ServiceProvider
 
     protected function loadViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'uploader');
 
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/uploader'),
-        ]);
 
         $this->publishes([
             __DIR__ . '/../migrations' => database_path('migrations'),
+        ], 'migrations');
+
+        $this->publishes([
+            __DIR__ . '/../config/webuploader.php' => config_path('webuploader.php'),
         ], 'migrations');
 
         $this->publishes([

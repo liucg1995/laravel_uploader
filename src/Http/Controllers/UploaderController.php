@@ -8,8 +8,10 @@ use Liucg1995\Uploader\Services\FileUpload;
 class UploaderController extends BaseController
 {
     public function upload(Request $request, FileUpload $fileUpload){
+        $show_type = $request->show_type;
+        $webuploader_config = config('webuploader')[$request->config_flag];
         $inputName = 'file';
-        $directory = $request->input('dir');
+        $directory = $webuploader_config['path'].$webuploader_config['path_level'];
         $disk = config('filesystems.default', 'public');
         if (!$request->hasFile($inputName)) {
             return [

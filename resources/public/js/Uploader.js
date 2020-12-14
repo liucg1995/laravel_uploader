@@ -31,7 +31,10 @@ function Uploader(selector) {
         this.options = JSON.parse(this.getAttr('data-options'));
         this.name = this.getAttr('data-name');
         this.max = parseInt(this.getAttr('data-max'));
+        this.count = parseInt(this.getAttr('data-count'));
         this.extensions = this.getAttr('data-accept');
+
+        this.currentQty = this.count ? this.count : 0;
 
         this.uploader = WebUploader.create({
             server: _this.options.url,
@@ -51,8 +54,12 @@ function Uploader(selector) {
 
     this.bind = function () {
         var _this = this;
+        console.log(_this.currentQty , _this.max );
+        var picker = $(_this.selector).find('.picker');
+        // _this.currentQty < _this.max ? picker.show() : picker.hide();
         this.on('qtyChanged', function () {
-            var picker = $('.picker');
+            console.log(_this.currentQty);
+            var picker = $(_this.selector).find('.picker');
             this.currentQty < this.max ? picker.show() : picker.hide();
         });
 
@@ -96,16 +103,11 @@ function Uploader(selector) {
         });
 
         this.uploader.on('uploadProgress', function (file, percentage) {
-            console.log(file, percentage);
             $('#' + file.id).find('.wrapper').text(parseInt(percentage * 100) + '%');
         });
 
         this.uploader.on('uploadSuccess', function (file, response) {
 
-
-            console.log(file, response);
-
-            console.log(this.options);
 
 
             var _input = '<input type="hidden" name="{0}[]" value="{1}" />';
@@ -130,11 +132,12 @@ function Uploader(selector) {
                 _this.currentQty++;
                 _this.trigger('qtyChanged');
 
-                if (this.options.threads > 1) {
+
+                if (_this.max > 1) {
                     _this.selector.find('#' + file.id).append('<input type="hidden" id="' + _this.name + '" data-id="' + response.alpha_id + '"  name="' + _this.name + '[' + response.alpha_id + ']" value="' + response.key + '" />')
                 } else {
-                    _this.selector.find('#' + file.id).append('<input type="hidden" name="' + _this.name + '" value="' + response.key + '" />');
-                    _this.selector.find('#' + file.id).append('<input type="hidden" id="' + _this.name + '" data-id="' + response.alpha_id + '" name="' + _this.name + '_id" value="' + response.alpha_id + '" />');
+                    _this.selector.find('#' + file.id).append('<input type="hidden" name="' + _this.name + '" value="' + response.url + '" />');
+                    _this.selector.find('#' + file.id).append('<input type="hidden" name="' + _this.name + '_id" value="' + response.alpha_id + '" />');
 
                 }
 
@@ -144,7 +147,6 @@ function Uploader(selector) {
 
 
         this.uploader.on('error', function (code, file) {
-            console.log(code, file);
             _this.selector.find('#' + file.id).find('.wrapper').addClass('error').text('error');
             var name = file.name;
             var str = "";
