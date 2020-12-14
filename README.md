@@ -21,20 +21,28 @@ Liucg1995\Uploader\UploaderServiceProvider::class,
 php artisan vendor:publish --provider=Liucg1995\\LaravelUploader\\UploadServiceProvider
 ```
 
+## 设置文件储存方式
+
+
+```php
+FILESYSTEM_DRIVER=public
+```
+
 ## 使用
 
 1. 添加上传组件到页面
 
-    ```php
-    @uploader(['name' => 'avatar', 'max' => 3, 'accept' => 'jpg,png,gif'])
-    ```
-
-2. 添加资源文件
+    单文件上传
 
     ```php
-    @uploader('assets')
+      {!! form_upload_attach('file','file',$item) !!}
     ```
+   多文件上传
 
+   ```php
+     {!! form_upload_attaches('file','file','id') !!}
+   ```
+      
     > 该组件依赖`jQuery`，所以在引入的资源文件的时候必须先引入`jQuery`
 
 ## 直传到云存储

@@ -1,9 +1,12 @@
 <?php
 return [
+    // 文件储存方式
+    'disk'=>'public',
 
+    // 文件类型
     'attach' => [
-        'path' => '/attach/',
-        'allow' => array(
+        'path' => '/attach/', // 上传路径
+        'allow' => array( // 允许上传的格式
             'gif',
             'jpg',
             'jpeg',
@@ -17,8 +20,7 @@ return [
             'rar',
             'zip',
         ),
-        'path_level' => '{Y}-{m}-{d}',
-        'support_crop' => true,
+        'path_level' => '{Y}-{m}-{d}', // 二级路径
         'show_type' => 'attach'
     ],
 
@@ -32,7 +34,6 @@ return [
             'png',
         ),
         'path_level' => '{Y}-{m}-{d}',
-        'support_crop' => true,
         'show_type' => 'img'
     ],
 
