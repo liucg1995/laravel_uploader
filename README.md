@@ -24,8 +24,11 @@ php artisan vendor:publish --provider=Liucg1995\\LaravelUploader\\UploadServiceP
 ## 设置文件储存方式
 
 
+config/webuploader.php
 ```php
-FILESYSTEM_DRIVER=public
+[
+    'disk'=>'public',
+]
 ```
 
 ## 使用
