@@ -109,7 +109,7 @@ function initWebUpload(item, options) {
     var webuploaderoptions = $.extend({
             auto: true,
             // swf文件路径
-            swf: '/js/Uploader.swf',
+            swf: '/vendor/uploader/js/Uploader.swf',
             // 文件接收服务端。
             server: '/Liucg1995/upload',
             // deleteServer: '/Home/DeleteFile',
@@ -124,6 +124,8 @@ function initWebUpload(item, options) {
             accept: options.accept
         },
         opts.innerOptions);
+
+    console.log(webuploaderoptions);
     var uploader = WebUploader.create(webuploaderoptions);
 
     //回发时还原hiddenfiled的保持数据
@@ -262,7 +264,6 @@ function initWebUpload(item, options) {
     });
     uploader.on('uploadSuccess', function (file, response) {//上传成功事件
         // debugger
-        console.log(response.message);
         if (typeof (response.success) == 'undefined' || response.success == false) {
             target.find('#' + $(item)[0].id + file.id).find('span.webuploadstate').html('上传失败');
             // if (typeof (response.message) == 'undefined') {
