@@ -19,6 +19,7 @@ Liucg1995\Uploader\UploaderServiceProvider::class,
 
 ```sh
 php artisan vendor:publish --provider=Liucg1995\\LaravelUploader\\UploadServiceProvider
+php artusan migrate 
 ```
 
 ## 设置文件储存方式
