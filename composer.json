@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "hashids/hashids": "^4.1",
+        "iidestiny/laravel-filesystem-oss": "^2.1",
+        "zgldh/qiniu-laravel-storage": "^0.10.3",
         "qiniu/php-sdk": "^7.1"
     },
     "autoload": {

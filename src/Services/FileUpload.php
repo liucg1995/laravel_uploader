@@ -4,6 +4,7 @@ namespace Liucg1995\Uploader\Services;
 
 use Hashids\Hashids;
 use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Support\Facades\Storage;
 use Liucg1995\Uploader\Models\Upload;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -59,14 +60,14 @@ class FileUpload
 
         $mime = $file->getMimeType();
 
-        $storage = new \Storage();
+        $storage = Storage::disk($disk);
 
-        $path = $storage->disk($disk)->putFileAs($dir, $file, $hashName);
+        $path = $storage->putFileAs($dir, $file, $hashName);
 
         $upload = new Upload();
         $upload->file_name = $hashName;
         $upload->full_path = $path;
-        $upload->view_path = $storage->disk($disk)->url($path);
+        $upload->view_path = $storage->url($path);
         $upload->mime = $mime;
         $upload->size = $file->getSize();
         $upload->original_name = $file->getClientOriginalName();
@@ -84,10 +85,11 @@ class FileUpload
             'size' => $file->getSize(),
             'key' => $path,
             'alpha_id' =>  $upload->alpha_id ,
-            'url' => $storage->disk($disk)->url($path),
-            'dataURL' => $this->getDataUrl($mime, $storage->disk($disk)->get($path)),
+            'url' => $storage->url($path),
+            'dataURL' => $this->getDataUrl($mime, $storage->get($path)),
         ];
     }
+
 
     /**
      * Replace date variable in dir path.
