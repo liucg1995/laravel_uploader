@@ -1,24 +1,32 @@
 {
-    "name": "liucg1995/laravel-uploader",
-    "description": "A upload component for laravel",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Liucg1995",
-            "email": "164445438@qq.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.5.9",
-
-        "qiniu/php-sdk": "^7.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Liucg1995\\Uploader\\": "src"
-        },
-        "files": [
-            "Helpers/Helpers.php"
-        ]
+  "name": "liucg1995/laravel-uploader",
+  "description": "A upload component for laravel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Liucg1995",
+      "email": "164445438@qq.com"
     }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "qiniu/php-sdk": "^7.1"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Liucg1995\\Uploader\\UploaderServiceProvider"
+      ],
+      "aliases": {
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Liucg1995\\Uploader\\": "src"
+    },
+    "files": [
+      "Helpers/Helpers.php"
+    ]
+  }
 }
