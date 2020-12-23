@@ -69,8 +69,6 @@ config/webuploader.php
 `本地(local)` `百度云(bos)` `腾讯云(cos)` `阿里云(oss)` `七牛云(qiniu)` `新浪云(scs)` `又拍云(upyun)` 
 > 其中的本地不算云存储，只是标识仍旧支持本地磁盘存储。
 
-- 青云的鉴权方式比较奇特所以暂时无法支持
-- UCloud的鉴权方式太复杂暂时不打算支持
 
 ### 1.配置
 百度云：
@@ -108,6 +106,9 @@ config/webuploader.php
         'bucket'       => 'xxxxx',
     ],
 ```
+```php
+composer require "iidestiny/laravel-filesystem-oss" 
+```
 
 七牛云：
 ```php
@@ -119,28 +120,11 @@ config/webuploader.php
         'domain'     => 'xxxxxxxxxxx'
     ],
 ```
-
-新浪云：
 ```php
-'scs' => [
-        'driver'       => 'scs',
-        'access_key'    =>  'xxxxxx',
-        'secret_key'   => 'xxxxxxx',
-        'bucket'       => 'xxxxxxxx'
-    ]
+composer require "zgldh/qiniu-laravel-storage"
 ```
 
-又拍云：
-```php
-'upyun' => [
-        'driver'     => 'upyun',
-        'operator'   => 'xxxxx',
-        'password'   => 'xxxxxx',
-        'bucket'     => 'xxxxxx',
-        'domain'     => 'xxxxxx',
-        'form_api_secret'     =>  'xxxxx',
-    ]
-```
+
 
 ### 2.设置云储存
 
