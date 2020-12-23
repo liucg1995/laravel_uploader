@@ -143,8 +143,12 @@ config/webuploader.php
 ```
 
 ### 2.设置云储存
+
+config/webuploader.php
 ```php
-FILESYSTEM_DRIVER=qiniu
+[
+    'disk'=>'qiniu',
+]
 ```
 
 ## 扩展
@@ -196,9 +200,14 @@ Uploader::extend('mystorage', function($app) {
 ```
 
 ### 3.使用
+
+config/webuploader.php
 ```php
-FILESYSTEM_DRIVER=mystorage
+[
+    'disk'=>'mystorage',
+]
 ```
+
 或者
 ```php
 Uploader::setAdapter('mystorage');

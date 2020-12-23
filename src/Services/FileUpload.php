@@ -59,12 +59,14 @@ class FileUpload
 
         $mime = $file->getMimeType();
 
-        $path = $this->filesystem->disk($disk)->putFileAs($dir, $file, $hashName);
+        $storage = new \Storage();
+
+        $path = $storage->disk($disk)->putFileAs($dir, $file, $hashName);
 
         $upload = new Upload();
         $upload->file_name = $hashName;
         $upload->full_path = $path;
-        $upload->view_path = $this->filesystem->disk($disk)->url($path);
+        $upload->view_path = $storage->disk($disk)->url($path);
         $upload->mime = $mime;
         $upload->size = $file->getSize();
         $upload->original_name = $file->getClientOriginalName();
@@ -82,8 +84,8 @@ class FileUpload
             'size' => $file->getSize(),
             'key' => $path,
             'alpha_id' =>  $upload->alpha_id ,
-            'url' => $this->filesystem->disk($disk)->url($path),
-            'dataURL' => $this->getDataUrl($mime, $this->filesystem->disk($disk)->get($path)),
+            'url' => $storage->disk($disk)->url($path),
+            'dataURL' => $this->getDataUrl($mime, $storage->disk($disk)->get($path)),
         ];
     }
 
